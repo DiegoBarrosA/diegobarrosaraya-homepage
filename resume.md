@@ -3,7 +3,7 @@ layout: default
 title: Resume
 description: "Diego Barros Araya - Senior IT Engineer Resume"
 permalink: /resume/
-last_updated: 2026-03-28
+last_updated: 2026-03-29
 robots: index, follow
 sitemap_priority: 0.9
 ---
@@ -62,7 +62,7 @@ With a strong foundation in computer science and over a decade of experience as 
 
 ---
 
-**Last Updated**: March 28, 2026
+**Last Updated**: March 29, 2026
 
 <div style="text-align: center; margin: 20px 0;">
 <a href="https://raw.githubusercontent.com/DiegoBarrosA/diego-barros-resume-generator/main/docs/resume.pdf" 
