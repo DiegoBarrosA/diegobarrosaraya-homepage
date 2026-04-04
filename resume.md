@@ -1,77 +1,150 @@
----
-layout: default
-title: Resume
-description: "Diego Barros Araya - Senior IT Engineer Resume"
-permalink: /resume/
-last_updated: 2026-04-04
-robots: index, follow
-sitemap_priority: 0.9
----
-
 # Diego Pablo Barros Araya
-## Senior IT Engineer & Technical Consultant | Atlassian Certified Expert (ACP-EE) | ITIL v4 | Python | Docker | Git | Open-Source Advocate
 
 ## Contact Information
-- **Email:** contact@diegobarrosaraya.com
-- **Location:** Santiago, Santiago Metropolitan Region, Chile
-- **LinkedIn:** https://www.linkedin.com/in/diegobarrosaraya
 
-## Summary
-With a strong foundation in computer science and over a decade of experience as a Linux user, I focus on implementing scalable, automated solutions in cloud-native environments (Docker, OCI) and embedded systems. My expertise also includes Atlassian products, and I have a proven track record of executing technical projects and collaborating with global technology teams to deliver efficient, high-performance IT solutions. As a Senior Engineer, I bring a track record of leading technical teams, driving project execution, and managing stakeholders in high-impact environments. My consulting experience has allowed me to collaborate with global technology leaders, helping them streamline workflows, enhance productivity, and achieve strategic IT goals. Beyond my professional work, I'm an avid explorer of both legacy Unix systems and cutting-edge Linux distributions, driven by a passion for open-source technology and continuous learning.
-
-## Professional Experience
-### Senior IT Engineer & Technical Consultant at Freelance
-*Chile*
-*2020 - Present*
-
-With a strong foundation in computer science and over a decade of experience as a Linux user, I focus on implementing scalable, automated solutions in cloud-native environments (Docker, OCI) and embedded systems. My expertise also includes Atlassian products, and I have a proven track record of executing technical projects and collaborating with global technology teams to deliver efficient, high-performance IT solutions.
-
-**Skills:**
-- Docker
-- Linux
-- Atlassian
-- Python
-- DevOps
-- Cloud Computing
-
-## Skills
-### Other
-- Docker
-- Linux
-- Python
-- Git
-- Atlassian
-- Jira
-- Confluence
-- AWS
-- Kubernetes
-- CI/CD
-- Node.js
-- React
-- DevOps
-- Open Source
-
-## Certifications
-### Atlassian Certified Professional - Enterprise (ACP-EE)
-**Atlassian**
-*Issued: 2024*
-
-### ITIL v4 Foundation
-**AXELOS**
-*Issued: 2024*
+- Email: [contact@diegobarrosaraya.com](mailto:contact@diegobarrosaraya.com)
+- LinkedIn: [linkedin.com/in/diegobarrosaraya](www.linkedin.com/in/diegobarrosaraya)
+- Portfolio: [diegobarrosaraya.com](diegobarrosaraya.com)
 
 ---
 
-**Last Updated**: April 04, 2026
+## Summary
 
-<div style="text-align: center; margin: 20px 0;">
-<a href="https://raw.githubusercontent.com/DiegoBarrosA/diego-barros-resume-generator/main/docs/resume.pdf" 
-   class="btn btn-primary" 
-   target="_blank" 
-   rel="noopener"
-   download="diego-barros-resume.pdf">
-   <i class="fa-solid fa-file-pdf"></i> Download ATS-Optimized PDF Resume
-</a>
-</div>
+Senior Engineer and lifelong Linux user with over 10 years of hands-on experience using and exploring Linux systems. Experienced in agile teams, supporting cloud-based environments, and expertise in automation and cloud-native tools such as Docker and OCI. Passionate about open-source and free software, continuously experimenting with personal projects to strengthen skills in modern Linux, automation, and infrastructure. Skilled in troubleshooting complex technical issues and collaborating with cross-functional teams to drive product improvements and customer satisfaction.
 
-*This resume is automatically synchronized with the latest version from the resume generator.*
+## Skills
+
+### Tools
+
+- Jira Administration
+- Confluence Administration
+- Git
+- Docker
+- Podman
+
+### Programming Languages
+
+- Python
+- Java
+- TypeScript
+- JavaScript
+- PL/SQL
+- SQL
+
+### Frameworks
+
+- Django
+- Android Studio
+
+### Libraries
+
+- Spring
+- React
+- Tailwind CSS
+
+### AI
+
+- Model Context Protocol (MCP)
+- Spec-kit
+- Cursor AI editor
+- Claude Code
+- OpenCode
+
+### Operating Systems
+
+- Debian based systems
+- Ubuntu
+- RHEL based systems
+- NixOS
+- Arch Linux
+- Mac OS
+- Windows 11
+
+### Cloud Technologies
+
+- AWS
+- Azure AD
+
+### Other
+
+- Mobile Application Development
+- Cloud-Native Architecture
+- Automation
+- Integrations through HTTP
+- Software Development
+
+## Certifications
+
+- Atlassian Certified Expert (Issued Jan 2024 · Expires Jan 2026)
+- Atlassian Certified Jira Administrator for Cloud (Issued Jan 2024 · Expires Apr 2026)
+- Confluence Space Administration (APB-CSA) (Issued Jan 2024 · Expires Apr 2026)
+- Curso de JavaScript Flex (Issued Jan 2024)
+- Atlassian Cloud Organization Admin Certification (Issued Jul 2023)
+- ITIL Foundation Level (Issued May 2023 · Expires Jan 2026)
+- Confluence Fundamentals Badge (Issued Jan 2023)
+- Confluence Quickstart: New to Cloud Badge (Issued Jan 2023)
+- JQL for Admins (Issued Jan 2023)
+- Jira Fundamentals Badge (Issued Jan 2023)
+- Jira: Basic Administration (2020) (Issued Jan 2023)
+- Learning Jira Software (Issued Jan 2023)
+- EF Set English Certificate 81/100 (C2 Proficient) (Issued Oct 2022)
+- ANÁLISIS Y DESARROLLO DE MODELOS DE DATOS (Issued Sep 2022)
+- ANÁLISIS Y PLANIFICACIÓN DE REQUERIMIENTOS INFORMÁTICOS (Issued Sep 2022)
+- Agile At Scale Sales Accreditation 2024-2025 (Issued Oct 2024 · Expires Oct 2025)
+- Cloud Migration Delivery Accreditation 2024 (Issued Oct 2024 · Expires Oct 2025)
+- Atlassian Certified in Managing Jira Projects for Cloud (Issued Jun 2023 · Expires Sep 2025)
+
+## Experience
+
+### Senior Engineer, Customer Support
+
+**ServiceRocket** | Santiago, Chile
+
+*April 2025 - Present*
+
+- Provide assistance to application administrators and experienced users in diagnosing, troubleshooting, repairing, and debugging complex B2B software systems.
+- Collaborate with cross-functional teams to shape product goals and roadmap.
+- Improve support processes and documentation based on real customer interactions.
+
+### Engineer, Customer Support
+
+**ServiceRocket** | Santiago, Chile
+
+*March 2024 - April 2025*
+
+- Specialized in providing support for Atlassian products.
+- Resolved complex customer issues through troubleshooting and collaboration with development teams.
+- Created and updated documentation to improve customer support efficiency.
+
+### Sales Consultant
+
+**Xiaomi Technology** | Santiago, Chile
+
+*January 2022 - April 2022*
+
+- Sold Xiaomi Smartphones and ecosystem products, assisted clients with recommendations, managed stock, checkout, unboxing, review, and delivery of products.
+
+## Education
+
+### Bachelor of Engineering - Software Development Engineering
+
+**Duoc UC** | Santiago, Chile
+
+*August 2024 - November 2025*
+
+- Creating and implementing innovative software solutions to tackle complex challenges.
+- Involved in the full development lifecycle, from design to deployment, ensuring quality, security, and efficiency.
+- Collaborating with teams to understand needs and deliver impactful technology.
+- Driven by continuous learning and applying best practices to build robust and scalable systems.
+
+### Associate's Degree, Programming Analyst
+
+**Duoc UC** | Santiago, Chile
+
+*January 2021 - July 2023*
+
+### High School Diploma
+
+**Instituto Nacional de Chile** | Santiago, Chile
+
+*March 2011 - November 2016*
