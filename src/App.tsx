@@ -1,4 +1,11 @@
-# DIEGO BARROS ARAYA
-## Full-Stack Developer
+function App() {
+  return (
+    <main>
+      <h1>DIEGO BARROS ARAYA</h1>
+      <h2>Full-Stack Developer</h2>
+      <p>Build, ship, and scale.</p>
+    </main>
+  )
+}
 
-Build, ship, and scale.
+export default App
