@@ -40,9 +40,12 @@ function TerminalBio({ text }: { text: string }) {
 
 function ProfilePhoto() {
   return (
-    <div className="relative mb-8 items-center justify-center flex">
-      <div className="absolute inset-0 rounded-full bg-accent/20 blur-2xl animate-pulse" />
-      <img src="/me.jpg" alt="Diego Barros Araya" className="relative w-50 h-50 rounded-full object-cover border-2 border-accent/50 glow" loading="eager" />
+    <div className="relative mb-8">
+      <div className="absolute rounded-full bg-accent/20 blur-2xl animate-pulse" 
+           style={{ width: '160px', height: '160px', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }} />
+      <img src="/me.jpg" alt="Diego Barros Araya" 
+           className="relative w-40 h-40 rounded-full object-cover border-2 border-accent/50 glow" 
+           loading="eager" />
     </div>
   )
 }
