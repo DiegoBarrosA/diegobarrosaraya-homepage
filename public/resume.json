@@ -1,0 +1,104 @@
+{
+  "basics": {
+    "name": "Diego Pablo Barros Araya",
+    "label": "Senior IT Engineer & Technical Consultant",
+    "email": "contact@diegobarrosaraya.com",
+    "url": "https://diegobarrosaraya.com",
+    "summary": "Senior Engineer and lifelong Linux user with over 10 years of hands-on experience using and exploring Linux systems. Experienced in agile teams, supporting cloud-based environments, and expertise in automation and cloud-native tools such as Docker and OCI.",
+    "location": {
+      "city": "Santiago",
+      "countryCode": "CL",
+      "region": "Chile"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "diegobarrosaraya",
+        "url": "https://linkedin.com/in/diegobarrosaraya"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "ServiceRocket",
+      "position": "Senior Engineer, Customer Support",
+      "url": "https://www.servicerocket.com",
+      "startDate": "2025-04",
+      "summary": "Provide assistance to application administrators in diagnosing, troubleshooting, and debugging complex B2B software systems.",
+      "location": "Santiago, Chile"
+    },
+    {
+      "name": "ServiceRocket",
+      "position": "Engineer, Customer Support",
+      "url": "https://www.servicerocket.com",
+      "startDate": "2024-03",
+      "endDate": "2025-04",
+      "summary": "Specialized in providing support for Atlassian products.",
+      "location": "Santiago, Chile"
+    }
+  ],
+  "education": [
+    {
+      "institution": "Duoc UC",
+      "area": "Software Development Engineering",
+      "studyType": "Bachelor of Engineering",
+      "startDate": "2024-08",
+      "endDate": "2025-11",
+      "location": "Santiago, Chile"
+    },
+    {
+      "institution": "Duoc UC",
+      "area": "Programming Analyst",
+      "studyType": "Associate's Degree",
+      "startDate": "2021-01",
+      "endDate": "2023-07",
+      "location": "Santiago, Chile"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Tools",
+      "keywords": ["Jira Administration", "Confluence Administration", "Git", "Docker", "Podman"]
+    },
+    {
+      "name": "Languages",
+      "keywords": ["Python", "Java", "TypeScript", "JavaScript", "PL/SQL", "SQL"]
+    },
+    {
+      "name": "Frameworks",
+      "keywords": ["Django", "Android Studio", "Spring", "React", "Tailwind CSS"]
+    },
+    {
+      "name": "AI & Editors",
+      "keywords": ["Model Context Protocol (MCP)", "Cursor AI", "Claude Code", "OpenCode"]
+    },
+    {
+      "name": "Operating Systems",
+      "keywords": ["Debian", "Ubuntu", "RHEL", "NixOS", "Arch Linux", "Mac OS", "Windows 11"]
+    },
+    {
+      "name": "Cloud",
+      "keywords": ["AWS", "Azure AD"]
+    }
+  ],
+  "certificates": [
+    {
+      "name": "Atlassian Certified Expert",
+      "date": "2024-01",
+      "expires": "2026-01"
+    },
+    {
+      "name": "Atlassian Certified Jira Administrator",
+      "date": "2024-01",
+      "expires": "2026-04"
+    },
+    {
+      "name": "ITIL Foundation Level",
+      "date": "2023-05",
+      "expires": "2026-01"
+    }
+  ],
+  "meta": {
+    "theme": "standard"
+  }
+}
