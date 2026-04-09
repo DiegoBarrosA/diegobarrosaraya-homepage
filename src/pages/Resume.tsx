@@ -75,8 +75,8 @@ function ExportButtons() {
   const baseUrl = `https://registry.jsonresume.org/${username}`
 
   const exports = [
-    { label: 'View', url: `${baseUrl}?theme=flat`, icon: FaFileCode, color: 'hover:bg-blue-600' },
-    { label: 'HTML', url: `${baseUrl}.html`, icon: FaFileCode, color: 'hover:bg-orange-600' },
+    { label: 'View', url: `${baseUrl}?theme=professional`, icon: FaFileCode, color: 'hover:bg-blue-600' },
+    { label: 'HTML', url: `${baseUrl}.html?theme=professional`, icon: FaFileCode, color: 'hover:bg-orange-600' },
     { label: 'JSON', url: `${baseUrl}.json`, icon: FaFileAlt, color: 'hover:bg-yellow-600' },
     { label: 'YAML', url: `${baseUrl}.yaml`, icon: FaFileCode, color: 'hover:bg-green-600' },
   ]
