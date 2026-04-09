@@ -16,47 +16,40 @@ function LoadingScreen() {
 
   return (
     <div className="min-h-screen bg-bg-primary flex flex-col items-center justify-center">
-      <div className="relative w-40 h-40 mb-6">
+      <div className="relative w-32 h-32 mb-6">
         <svg viewBox="0 0 100 100" className="w-full h-full">
-          <defs>
-            <linearGradient id="gearGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#353535" />
-              <stop offset="100%" stopColor="#2D2D2D" />
-            </linearGradient>
-          </defs>
-          <circle cx="50" cy="50" r="45" fill="none" stroke="#353535" strokeWidth="2" />
-          <circle cx="50" cy="50" r="38" fill="none" stroke="#2D2D2D" strokeWidth="1" />
-          <g className="origin-center" style={{ transformOrigin: '50px 50px' }}>
-            <circle cx="50" cy="50" r="8" fill="url(#gearGrad)" />
-            {[...Array(12)].map((_, i) => (
-              <rect key={i} x="48" y="14" width="4" height="10" fill="#82AAFF" rx="1" 
-                    style={{ transform: `rotate(${i * 30}deg)`, transformOrigin: '50px 50px' }} />
-            ))}
-            <circle cx="50" cy="50" r="4" fill="#C3E88D" />
-          </g>
-          <g className="origin-center" style={{ transformOrigin: '50px 50px', animation: 'spin 2s linear infinite reverse' }}>
-            <rect x="8" y="48" width="16" height="4" fill="#82AAFF" rx="1" />
-            <rect x="8" y="48" width="16" height="4" fill="#82AAFF" rx="1" 
-                  style={{ transform: 'rotate(90deg)', transformOrigin: '16px 50px' }} />
+          <circle cx="50" cy="50" r="45" fill="none" stroke="#353535" strokeWidth="3" />
+          <circle cx="50" cy="50" r="35" fill="none" stroke="#2D2D2D" strokeWidth="1" />
+          <g style={{ transformOrigin: '30px 50px', animation: 'gearSpin 4s linear infinite' }}>
+            <circle cx="30" cy="50" r="8" fill="#353535" />
             {[...Array(8)].map((_, i) => (
-              <circle key={i} cx={50 + Math.cos(i * Math.PI / 4) * 25} cy={50 + Math.sin(i * Math.PI / 4) * 25} 
-                      r="3" fill="#353535" />
+              <rect key={i} x="28" y="38" width="4" height="8" fill="#82AAFF" 
+                    style={{ transform: `rotate(${i * 45}deg)`, transformOrigin: '30px 50px' }} />
             ))}
           </g>
-          <rect x="49" y="30" width="2" height="20" fill="#C3E88D" rx="1" 
-                style={{ transform: 'rotate(45deg)', transformOrigin: '50px 50px', animation: 'tick 2s steps(12) infinite' }} />
-          <rect x="49" y="38" width="2" height="14" fill="#82AAFF" rx="1" 
-                style={{ transform: 'rotate(180deg)', transformOrigin: '50px 50px', animation: 'tick 2s steps(12) infinite' }} />
+          <g style={{ transformOrigin: '70px 50px', animation: 'gearSpin 4s linear infinite reverse' }}>
+            <circle cx="70" cy="50" r="6" fill="#353535" />
+            {[...Array(6)].map((_, i) => (
+              <rect key={i} x="68" y="40" width="3" height="6" fill="#C3E88D" 
+                    style={{ transform: `rotate(${i * 60}deg)`, transformOrigin: '70px 50px' }} />
+            ))}
+          </g>
+          <line x1="50" y1="25" x2="50" y2="40" stroke="#EEFFFF" strokeWidth="2" strokeLinecap="round" style={{ animation: 'tick 1s steps(12) infinite', transformOrigin: '50px 50px' }} />
+          <line x1="50" y1="50" x2="65" y2="50" stroke="#82AAFF" strokeWidth="2" strokeLinecap="round" style={{ animation: 'hourHand 12s steps(12) infinite', transformOrigin: '50px 50px' }} />
           <circle cx="50" cy="50" r="3" fill="#C3E88D" />
         </svg>
       </div>
       <p className="text-text-secondary font-mono">Loading{dots}</p>
       <style>{`
-        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes gearSpin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
         @keyframes tick { 
-          0% { transform: rotate(45deg); } 
-          8.33% { transform: rotate(50deg); } 
-          100% { transform: rotate(45deg); } 
+          0% { transform: rotate(0deg); } 
+          8.33% { transform: rotate(6deg); } 
+          100% { transform: rotate(0deg); } 
+        }
+        @keyframes hourHand { 
+          0% { transform: rotate(0deg); } 
+          100% { transform: rotate(360deg); } 
         }
       `}</style>
     </div>
