@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { FaEnvelope, FaLinkedin, FaFileCode, FaFileAlt } from 'react-icons/fa'
+import { FaEnvelope, FaLinkedin, FaFilePdf, FaFileCode, FaFileAlt } from 'react-icons/fa'
 
 interface ResumeData {
   basics: {
@@ -75,6 +75,7 @@ function ExportButtons() {
   const baseUrl = `https://registry.jsonresume.org/${username}`
 
   const exports = [
+    { label: 'PDF', url: '/resume.pdf', icon: FaFilePdf, color: 'hover:bg-red-600' },
     { label: 'View', url: `${baseUrl}?theme=professional`, icon: FaFileCode, color: 'hover:bg-blue-600' },
     { label: 'HTML', url: `${baseUrl}.html?theme=professional`, icon: FaFileCode, color: 'hover:bg-orange-600' },
     { label: 'JSON', url: `${baseUrl}.json`, icon: FaFileAlt, color: 'hover:bg-yellow-600' },

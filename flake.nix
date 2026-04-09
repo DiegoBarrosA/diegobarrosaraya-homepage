@@ -17,6 +17,8 @@
           packages = [
             pkgs.nodejs_20
             pkgs.pnpm
+            pkgs.pandoc
+            pkgs.texliveFull
           ];
 
           shellHook = ''

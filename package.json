@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate-resume": "tsx scripts/json-to-markdown.ts public/resume.json resume.md && pandoc resume.md -o public/resume.pdf --template=templates/apa-resume.tex -s"
   },
   "dependencies": {
     "react": "^19.0.0",
@@ -18,6 +19,7 @@
   "devDependencies": {
     "@eslint/js": "^9.19.0",
     "@tailwindcss/vite": "^4.0.0",
+    "@types/node": "^25.5.2",
     "@types/react": "^19.0.8",
     "@types/react-dom": "^19.0.3",
     "@vitejs/plugin-react": "^4.3.4",
@@ -26,6 +28,7 @@
     "eslint-plugin-react-refresh": "^0.4.18",
     "globals": "^15.14.0",
     "tailwindcss": "^4.0.0",
+    "tsx": "^4.21.0",
     "typescript": "~5.7.2",
     "typescript-eslint": "^8.24.0",
     "vite": "^6.1.0"
