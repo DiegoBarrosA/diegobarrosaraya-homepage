@@ -30,7 +30,7 @@ function TerminalBio({ text }: { text: string }) {
 
   return (
     <div className="relative">
-      <pre className="text-left whitespace-pre-wrap leading-relaxed text-text-secondary">
+      <pre className="text-left whitespace-pre-wrap leading-relaxed text-success">
         {displayedText}
         {!isComplete && <span className="terminal-cursor animate-[blink_1s_infinite]" />}
       </pre>
@@ -88,7 +88,7 @@ export default function Home() {
   const [showNav, setShowNav] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowNav(true), 2000)
+    const timer = setTimeout(() => setShowNav(true), 1000)
     return () => clearTimeout(timer)
   }, [])
 
