@@ -109,7 +109,7 @@ export default function Resume() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    fetch('/resume.json')
+    fetch('https://registry.jsonresume.org/DiegoBarrosA.json')
       .then(res => res.json())
       .then(data => {
         setResumeData(data)
