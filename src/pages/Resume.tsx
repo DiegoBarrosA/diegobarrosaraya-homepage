@@ -75,11 +75,10 @@ function ExportButtons() {
   const baseUrl = `https://registry.jsonresume.org/${username}`
 
   const exports = [
-    { label: 'PDF', url: '/resume.pdf', icon: FaFilePdf, color: 'hover:bg-red-600' },
-    { label: 'View', url: `${baseUrl}?theme=professional`, icon: FaFileCode, color: 'hover:bg-blue-600' },
-    { label: 'HTML', url: `${baseUrl}.html?theme=professional`, icon: FaFileCode, color: 'hover:bg-orange-600' },
-    { label: 'JSON', url: `${baseUrl}.json`, icon: FaFileAlt, color: 'hover:bg-yellow-600' },
-    { label: 'YAML', url: `${baseUrl}.yaml`, icon: FaFileCode, color: 'hover:bg-green-600' },
+    { label: 'PDF', url: '/resume.pdf', icon: FaFilePdf, color: 'bg-base09 hover:bg-base09/80' },
+    { label: 'HTML', url: `${baseUrl}.html`, icon: FaFileCode, color: 'bg-base0A hover:bg-base0A/80' },
+    { label: 'JSON', url: `${baseUrl}.json`, icon: FaFileAlt, color: 'bg-base0B hover:bg-base0B/80' },
+    { label: 'YAML', url: `${baseUrl}.yaml`, icon: FaFileCode, color: 'bg-base0C hover:bg-base0C/80' },
   ]
 
   return (
@@ -93,7 +92,7 @@ function ExportButtons() {
             href={exp.url}
             target="_blank"
             rel="noopener noreferrer"
-            className={`flex items-center gap-2 px-4 py-2 bg-bg-surface text-text-secondary rounded-lg transition-all duration-300 hover:text-white ${exp.color}`}
+            className={`flex items-center gap-2 px-4 py-2 text-base00 rounded-lg transition-all duration-300 font-medium ${exp.color}`}
           >
             <Icon className="text-sm" />
             {exp.label}

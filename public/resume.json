@@ -56,49 +56,17 @@
     }
   ],
   "skills": [
-    {
-      "name": "Tools",
-      "keywords": ["Jira Administration", "Confluence Administration", "Git", "Docker", "Podman"]
-    },
-    {
-      "name": "Languages",
-      "keywords": ["Python", "Java", "TypeScript", "JavaScript", "PL/SQL", "SQL"]
-    },
-    {
-      "name": "Frameworks",
-      "keywords": ["Django", "Android Studio", "Java Spring", "React", "Tailwind CSS"]
-    },
-    {
-      "name": "AI & Editors",
-      "keywords": ["Model Context Protocol (MCP)", "Cursor AI", "Claude Code", "OpenCode"]
-    },
-    {
-      "name": "Operating Systems",
-      "keywords": ["Debian", "Ubuntu", "RHEL", "NixOS", "Arch Linux", "Mac OS", "Windows 11"]
-    },
-    {
-      "name": "Cloud",
-      "keywords": ["AWS", "Azure AD"]
-    }
+    { "name": "Tools", "keywords": ["Jira Administration", "Confluence Administration", "Git", "Docker", "Podman"] },
+    { "name": "Languages", "keywords": ["Python", "Java", "TypeScript", "JavaScript", "PL/SQL", "SQL"] },
+    { "name": "Frameworks", "keywords": ["Django", "Android Studio", "Java Spring", "React", "Tailwind CSS"] },
+    { "name": "AI & Editors", "keywords": ["Model Context Protocol (MCP)", "Cursor AI", "Claude Code", "OpenCode"] },
+    { "name": "Operating Systems", "keywords": ["Debian", "Ubuntu", "RHEL", "NixOS", "Arch Linux", "Mac OS", "Windows 11"] },
+    { "name": "Cloud", "keywords": ["AWS", "Azure AD"] }
   ],
   "certificates": [
-    {
-      "name": "Atlassian Certified Expert",
-      "date": "2024-01",
-      "expires": "2026-01"
-    },
-    {
-      "name": "Atlassian Certified Jira Administrator",
-      "date": "2024-01",
-      "expires": "2026-04"
-    },
-    {
-      "name": "ITIL Foundation Level",
-      "date": "2023-05",
-      "expires": "2026-01"
-    }
+    { "name": "Atlassian Certified Expert", "date": "2024-01", "expires": "2026-01" },
+    { "name": "Atlassian Certified Jira Administrator", "date": "2024-01", "expires": "2026-04" },
+    { "name": "ITIL Foundation Level", "date": "2023-05", "expires": "2026-01" }
   ],
-  "meta": {
-    "theme": "standard"
-  }
+  "meta": { "theme": "standard" }
 }
