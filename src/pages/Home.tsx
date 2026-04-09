@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 const bioText = `Beyond my professional work, I'm an avid explorer of both legacy Unix systems and cutting-edge Linux distributions, driven by a passion for open-source technology and continuous learning.`
 
 const navItems = [
-  { path: '/resume', label: 'Resume', delay: 'delay-100' },
-  { path: 'https://blog.diegobarrosaraya.com', label: 'Blog', delay: 'delay-200', external: true },
-  { path: '/contact', label: 'Contact', delay: 'delay-300' },
+  { path: '/resume', label: 'Resume' },
+  { path: 'https://blog.diegobarrosaraya.com', label: 'Blog', external: true },
+  { path: '/contact', label: 'Contact' },
 ]
 
 function TerminalBio({ text }: { text: string }) {
@@ -23,7 +23,7 @@ function TerminalBio({ text }: { text: string }) {
         setIsComplete(true)
         clearInterval(interval)
       }
-    }, 50)
+    }, 5)
     return () => clearInterval(interval)
   }, [text])
 
@@ -39,9 +39,9 @@ function TerminalBio({ text }: { text: string }) {
 
 function ProfilePhoto() {
   return (
-    <div className="relative mb-8">
+    <div className="relative mb-8 items-center justify-center flex">
       <div className="absolute inset-0 rounded-full bg-accent/20 blur-2xl animate-pulse" />
-      <img src="/me.jpg" alt="Diego Barros Araya" className="relative w-40 h-40 rounded-full object-cover border-2 border-accent/50 glow" loading="eager" />
+      <img src="/me.jpg" alt="Diego Barros Araya" className="relative w-50 h-50 rounded-full object-cover border-2 border-accent/50 glow" loading="eager" />
     </div>
   )
 }
@@ -51,11 +51,11 @@ function Navigation() {
     <nav className="flex flex-wrap justify-center gap-4 mt-12">
       {navItems.map((item) => (
         item.external ? (
-          <a key={item.path} href={item.path} target="_blank" rel="noopener noreferrer" className={`nav-item ${item.delay} opacity-0 animate-fade-in`}>
+          <a key={item.path} href={item.path} target="_blank" rel="noopener noreferrer" className="nav-item">
             {item.label}
           </a>
         ) : (
-          <Link key={item.path} to={item.path} className={`nav-item ${item.delay} opacity-0 animate-fade-in`}>
+          <Link key={item.path} to={item.path} className="nav-item">
             {item.label}
           </Link>
         )
@@ -68,7 +68,7 @@ export default function Home() {
   const [showNav, setShowNav] = useState(false)
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowNav(true), 1500)
+    const timer = setTimeout(() => setShowNav(true), 2000)
     return () => clearTimeout(timer)
   }, [])
 
