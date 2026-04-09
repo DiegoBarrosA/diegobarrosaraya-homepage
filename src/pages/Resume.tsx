@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { FaEnvelope, FaLinkedin } from 'react-icons/fa'
 
 const resumeData = {
   name: "Diego Pablo Barros Araya",
@@ -73,8 +74,12 @@ export default function Resume() {
           <h1 className="text-3xl font-bold mb-2">{resumeData.name}</h1>
           <p className="text-xl text-accent mb-4">{resumeData.title}</p>
           <div className="flex flex-wrap gap-4 text-sm text-text-secondary">
-            <a href={`mailto:${resumeData.contact.email}`} className="hover:text-accent transition-colors">{resumeData.contact.email}</a>
-            <a href={`https://${resumeData.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors">LinkedIn</a>
+            <a href={`mailto:${resumeData.contact.email}`} className="hover:text-accent transition-colors flex items-center gap-2">
+              <FaEnvelope /> {resumeData.contact.email}
+            </a>
+            <a href={`https://${resumeData.contact.linkedin}`} target="_blank" rel="noopener noreferrer" className="hover:text-accent transition-colors flex items-center gap-2">
+              <FaLinkedin /> LinkedIn
+            </a>
           </div>
         </header>
         <section className="mb-8 fade-in">

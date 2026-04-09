@@ -1,12 +1,13 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { FaFileAlt, FaBlog, FaEnvelope } from 'react-icons/fa'
 
 const bioText = `Beyond my professional work, I'm an avid explorer of both legacy Unix systems and cutting-edge Linux distributions, driven by a passion for open-source technology and continuous learning.`
 
 const navItems = [
-  { path: '/resume', label: 'Resume' },
-  { path: 'https://blog.diegobarrosaraya.com', label: 'Blog', external: true },
-  { path: '/contact', label: 'Contact' },
+  { path: '/resume', label: 'Resume', icon: FaFileAlt },
+  { path: 'https://blog.diegobarrosaraya.com', label: 'Blog', icon: FaBlog, external: true },
+  { path: '/contact', label: 'Contact', icon: FaEnvelope },
 ]
 
 function TerminalBio({ text }: { text: string }) {
@@ -49,17 +50,20 @@ function ProfilePhoto() {
 function Navigation() {
   return (
     <nav className="flex flex-wrap justify-center gap-4 mt-12">
-      {navItems.map((item) => (
-        item.external ? (
-          <a key={item.path} href={item.path} target="_blank" rel="noopener noreferrer" className="nav-item">
+      {navItems.map((item) => {
+        const Icon = item.icon
+        return item.external ? (
+          <a key={item.path} href={item.path} target="_blank" rel="noopener noreferrer" className="nav-item flex items-center gap-2">
+            <Icon className="text-sm" />
             {item.label}
           </a>
         ) : (
-          <Link key={item.path} to={item.path} className="nav-item">
+          <Link key={item.path} to={item.path} className="nav-item flex items-center gap-2">
+            <Icon className="text-sm" />
             {item.label}
           </Link>
         )
-      ))}
+      })}
     </nav>
   )
 }

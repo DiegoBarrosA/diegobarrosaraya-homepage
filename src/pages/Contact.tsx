@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { FaEnvelope, FaLinkedin, FaPaperPlane } from 'react-icons/fa'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
@@ -25,7 +26,9 @@ export default function Contact() {
   return (
     <main className="min-h-screen py-12 px-4 sm:px-8">
       <div className="max-w-lg mx-auto">
-        <Link to="/" className="inline-block mb-8 text-accent hover:text-accent-secondary transition-colors">← Back to Home</Link>
+        <Link to="/" className="inline-block mb-8 text-accent hover:text-accent-secondary transition-colors flex items-center gap-2">
+          <span>←</span> Back to Home
+        </Link>
         <header className="mb-8 fade-in">
           <h1 className="text-3xl font-bold mb-2">Get in Touch</h1>
           <p className="text-text-secondary">Have a question or want to work together?</p>
@@ -54,16 +57,20 @@ export default function Contact() {
                 className="w-full px-4 py-3 bg-bg-secondary border border-bg-surface rounded-lg text-text-primary placeholder-text-secondary/50 focus:outline-none focus:border-accent resize-none" placeholder="Your message..." />
             </div>
             {formState === 'error' && <div className="bg-error/10 border border-error rounded-lg p-4 text-error">Something went wrong. Email me directly at contact@diegobarrosaraya.com</div>}
-            <button type="submit" disabled={formState === 'submitting'} className="w-full nav-item disabled:opacity-50">
-              {formState === 'submitting' ? 'Sending...' : 'Send Message'}
+            <button type="submit" disabled={formState === 'submitting'} className="w-full nav-item flex items-center justify-center gap-2 disabled:opacity-50">
+              <FaPaperPlane /> {formState === 'submitting' ? 'Sending...' : 'Send Message'}
             </button>
           </form>
         )}
         <div className="mt-12 pt-8 border-t border-bg-surface fade-in text-center">
           <p className="text-text-secondary mb-4">Or reach out directly:</p>
           <div className="flex justify-center gap-6">
-            <a href="mailto:contact@diegobarrosaraya.com" className="text-text-secondary hover:text-accent transition-colors">contact@diegobarrosaraya.com</a>
-            <a href="https://linkedin.com/in/diegobarrosaraya" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent transition-colors">LinkedIn</a>
+            <a href="mailto:contact@diegobarrosaraya.com" className="text-text-secondary hover:text-accent transition-colors flex items-center gap-2">
+              <FaEnvelope /> contact@diegobarrosaraya.com
+            </a>
+            <a href="https://linkedin.com/in/diegobarrosaraya" target="_blank" rel="noopener noreferrer" className="text-text-secondary hover:text-accent transition-colors flex items-center gap-2">
+              <FaLinkedin /> LinkedIn
+            </a>
           </div>
         </div>
       </div>
