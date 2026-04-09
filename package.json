@@ -8,7 +8,7 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "generate-resume": "tsx scripts/json-to-markdown.ts public/resume.json resume.md && pandoc resume.md -o public/resume.pdf --template=templates/apa-resume.tex -s"
+    "generate-resume": "tsx scripts/json-to-markdown.ts"
   },
   "dependencies": {
     "react": "^19.0.0",

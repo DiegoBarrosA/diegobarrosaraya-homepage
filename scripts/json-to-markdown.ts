@@ -1,5 +1,7 @@
 import fs from 'fs';
 import path from 'path';
+import https from 'https';
+import { execSync } from 'child_process';
 
 interface Resume {
   basics: {
@@ -48,11 +50,9 @@ function formatDateRange(start: string, end?: string): string {
 function convertToMarkdown(resume: Resume): string {
   const lines: string[] = [];
   
-  // Title (APA uses name as title for CV)
   lines.push(`# ${resume.basics.name}`);
   lines.push('');
   
-  // Contact info (APA style: single line, separated by commas)
   const contactParts: string[] = [];
   if (resume.basics.email) contactParts.push(resume.basics.email);
   if (resume.basics.url) contactParts.push(resume.basics.url);
@@ -65,7 +65,6 @@ function convertToMarkdown(resume: Resume): string {
   }
   lines.push('');
   
-  // Summary
   if (resume.basics.summary) {
     lines.push(`## Summary`);
     lines.push('');
@@ -73,7 +72,6 @@ function convertToMarkdown(resume: Resume): string {
     lines.push('');
   }
   
-  // Education
   if (resume.education && resume.education.length > 0) {
     lines.push(`## Education`);
     lines.push('');
@@ -88,7 +86,6 @@ function convertToMarkdown(resume: Resume): string {
     }
   }
   
-  // Work Experience
   if (resume.work && resume.work.length > 0) {
     lines.push(`## Professional Experience`);
     lines.push('');
@@ -104,7 +101,6 @@ function convertToMarkdown(resume: Resume): string {
     }
   }
   
-  // Skills
   if (resume.skills && resume.skills.length > 0) {
     lines.push(`## Skills`);
     lines.push('');
@@ -114,7 +110,6 @@ function convertToMarkdown(resume: Resume): string {
     lines.push('');
   }
   
-  // Certifications
   if (resume.certificates && resume.certificates.length > 0) {
     lines.push(`## Certifications`);
     lines.push('');
@@ -128,15 +123,40 @@ function convertToMarkdown(resume: Resume): string {
   return lines.join('\n');
 }
 
-// Main
-const args = process.argv.slice(2);
-const inputFile = args[0] || 'public/resume.json';
-const outputFile = args[1] || 'resume.md';
+function fetchJson(url: string): Promise<any> {
+  return new Promise((resolve, reject) => {
+    https.get(url, (res) => {
+      let data = '';
+      res.on('data', chunk => data += chunk);
+      res.on('end', () => {
+        try {
+          resolve(JSON.parse(data));
+        } catch (e) {
+          reject(e);
+        }
+      });
+    }).on('error', reject);
+  });
+}
 
-const resumePath = path.resolve(inputFile);
-const resume: Resume = JSON.parse(fs.readFileSync(resumePath, 'utf-8'));
+async function main() {
+  const username = 'DiegoBarrosA';
+  const apiUrl = `https://registry.jsonresume.org/${username}.json`;
+  
+  console.log(`Fetching resume from ${apiUrl}...`);
+  const resume: Resume = await fetchJson(apiUrl);
+  
+  const jsonPath = path.resolve('public/resume.json');
+  fs.writeFileSync(jsonPath, JSON.stringify(resume, null, 2));
+  console.log(`Saved resume.json`);
+  
+  const markdown = convertToMarkdown(resume);
+  fs.writeFileSync(path.resolve('resume.md'), markdown);
+  console.log(`Converted to resume.md`);
+  
+  const pdfPath = path.resolve('public/resume.pdf');
+  execSync(`pandoc resume.md -o ${pdfPath} --template=templates/apa-resume.tex -s`, { stdio: 'inherit' });
+  console.log(`Generated resume.pdf`);
+}
 
-const markdown = convertToMarkdown(resume);
-fs.writeFileSync(path.resolve(outputFile), markdown);
-
-console.log(`Converted ${inputFile} to ${outputFile}`);
+main().catch(console.error);
