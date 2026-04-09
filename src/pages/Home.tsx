@@ -47,21 +47,29 @@ function ProfilePhoto() {
   )
 }
 
-function Navigation() {
+function Navigation({ showNav }: { showNav: boolean }) {
   return (
     <nav className="flex flex-wrap justify-center gap-4 mt-12">
-      {navItems.map((item) => {
+      {navItems.map((item, index) => {
         const Icon = item.icon
-        return item.external ? (
-          <a key={item.path} href={item.path} target="_blank" rel="noopener noreferrer" className="nav-item flex items-center gap-2">
-            <Icon className="text-sm" />
-            {item.label}
-          </a>
-        ) : (
-          <Link key={item.path} to={item.path} className="nav-item flex items-center gap-2">
-            <Icon className="text-sm" />
-            {item.label}
-          </Link>
+        return (
+          <span 
+            key={item.path} 
+            className={`${showNav ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} transition-all duration-500 ease-out`}
+            style={{ transitionDelay: `${index * 150}ms` }}
+          >
+            {item.external ? (
+              <a href={item.path} target="_blank" rel="noopener noreferrer" className="nav-item flex items-center gap-2">
+                <Icon className="text-sm" />
+                {item.label}
+              </a>
+            ) : (
+              <Link to={item.path} className="nav-item flex items-center gap-2">
+                <Icon className="text-sm" />
+                {item.label}
+              </Link>
+            )}
+          </span>
         )
       })}
     </nav>
@@ -85,7 +93,7 @@ export default function Home() {
         <div className="bg-bg-secondary/50 rounded-lg p-6 text-left backdrop-blur-sm">
           <TerminalBio text={bioText} />
         </div>
-        {showNav && <Navigation />}
+        {showNav && <Navigation showNav={showNav} />}
       </div>
     </main>
   )
