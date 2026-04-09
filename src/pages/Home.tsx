@@ -53,10 +53,15 @@ function Navigation({ showNav }: { showNav: boolean }) {
       {navItems.map((item, index) => {
         const Icon = item.icon
         return (
-          <span 
-            key={item.path} 
-            className={`${showNav ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'} transition-all duration-500 ease-out`}
-            style={{ transitionDelay: `${index * 150}ms` }}
+          <div 
+            key={item.path}
+            className="nav-button-container"
+            style={{ 
+              opacity: showNav ? 1 : 0, 
+              transform: showNav ? 'translateY(0)' : 'translateY(16px)',
+              transition: `all 0.5s ease-out`,
+              transitionDelay: `${index * 150}ms`
+            }}
           >
             {item.external ? (
               <a href={item.path} target="_blank" rel="noopener noreferrer" className="nav-item flex items-center gap-2">
@@ -69,7 +74,7 @@ function Navigation({ showNav }: { showNav: boolean }) {
                 {item.label}
               </Link>
             )}
-          </span>
+          </div>
         )
       })}
     </nav>
@@ -93,7 +98,7 @@ export default function Home() {
         <div className="bg-bg-secondary/50 rounded-lg p-6 text-left backdrop-blur-sm">
           <TerminalBio text={bioText} />
         </div>
-        {showNav && <Navigation showNav={showNav} />}
+        <Navigation showNav={showNav} />
       </div>
     </main>
   )
