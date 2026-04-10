@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { 
-  FaEnvelope, FaLinkedin, FaFilePdf, FaFileCode, FaFileAlt, FaMinus, FaExpand, 
-  FaCogs, FaBriefcase, FaGraduationCap, FaAward, FaDownload, FaFile
+  FaEnvelope, FaLinkedin, FaFilePdf, FaFileCode, FaFileAlt, FaCogs, FaBriefcase, 
+  FaGraduationCap, FaAward, FaDownload, FaFile
 } from 'react-icons/fa'
 import { useDock } from '../App'
 
@@ -36,11 +36,6 @@ function formatDateRange(start: string, end?: string): string {
 }
 
 type WindowType = 'terminal' | 'gui'
-
-interface WindowState {
-  minimized: boolean
-  maximized: boolean
-}
 
 interface WindowConfig {
   id: string
@@ -82,23 +77,27 @@ function TerminalWindow({
   onMinimize,
   onClose,
   onMaximize,
-  children
+  children,
+  animation
 }: {
   config: WindowConfig
-  state: WindowState
-  onMinimize: () => void
-  onClose: () => void
-  onMaximize: () => void
+  state: { minimized: boolean; maximized: boolean }
+  onMinimize?: () => void
+  onClose?: () => void
+  onMaximize?: () => void
   children: React.ReactNode
+  animation?: 'open' | 'pop' | 'none'
 }) {
   if (state.minimized) return null
 
+  const animClass = animation === 'open' ? 'opening' : animation === 'pop' ? 'maximizing' : ''
+
   return (
-    <div className={`terminal-window mb-6 fade-in ${state.maximized ? 'window-maximized' : ''}`}>
+    <div className={`terminal-window mb-6 fade-in ${animClass} ${state.maximized ? 'max-w-4xl mx-auto test-maximized' : ''}`}>
       <div className="terminal-titlebar">
-        <button onClick={onMinimize} className="terminal-btn terminal-btn-red hover:opacity-80 transition-opacity" title="Minimize" />
-        <button onClick={onClose} className="terminal-btn terminal-btn-yellow hover:opacity-80 transition-opacity" title="Close" />
-        <button onClick={onMaximize} className="terminal-btn terminal-btn-green hover:opacity-80 transition-opacity" title="Maximize" />
+        <button type="button" onClick={onMinimize} className="terminal-btn terminal-btn-red hover:opacity-80 transition-opacity" title="Minimize" />
+        <button type="button" onClick={onClose} className="terminal-btn terminal-btn-yellow hover:opacity-80 transition-opacity" title="Close" />
+        <button type="button" onClick={onMaximize} className="terminal-btn terminal-btn-green hover:opacity-80 transition-opacity" title="Maximize" />
         <span className="terminal-title">{config.title}</span>
       </div>
       <div className="terminal-content">
@@ -113,28 +112,27 @@ function GUIWindow({
   state,
   onMinimize,
   onMaximize,
-  children
+  children,
+  animation
 }: {
   config: WindowConfig
-  state: WindowState
-  onMinimize: () => void
-  onMaximize: () => void
+  state: { minimized: boolean; maximized: boolean }
+  onMinimize?: () => void
+  onMaximize?: () => void
   children: React.ReactNode
+  animation?: 'open' | 'pop' | 'none'
 }) {
   if (state.minimized) return null
 
+  const animClass = animation === 'open' ? 'opening' : animation === 'pop' ? 'maximizing' : ''
+
   return (
-    <div className={`gui-window mb-6 fade-in ${state.maximized ? 'window-maximized' : ''}`}>
-      <div className="gui-header">
-        <span className="gui-title">{config.title}</span>
-        <div className="gui-controls">
-          <button onClick={onMinimize} className="gui-btn" title="Minimize">
-            <FaMinus />
-          </button>
-          <button onClick={onMaximize} className="gui-btn" title="Maximize">
-            <FaExpand />
-          </button>
-        </div>
+    <div className={`terminal-window mb-6 fade-in ${animClass} ${state.maximized ? 'max-w-4xl mx-auto test-maximized' : ''}`}>
+      <div className="terminal-titlebar">
+        <button type="button" onClick={onMinimize} className="terminal-btn terminal-btn-red hover:opacity-80 transition-opacity" title="Minimize" />
+        <button type="button" className="terminal-btn terminal-btn-yellow hover:opacity-80 transition-opacity" title="Close" />
+        <button type="button" onClick={onMaximize} className="terminal-btn terminal-btn-green hover:opacity-80 transition-opacity" title="Maximize" />
+        <span className="terminal-title">{config.title}</span>
       </div>
       <div className="terminal-content">
         {children}
@@ -274,15 +272,6 @@ const WINDOW_CONFIGS: WindowConfig[] = [
   { id: 'export', title: '~/export$ ./export.sh', type: 'gui', icon: FaDownload, dockColor: 'dock-btn-gui' },
 ]
 
-const WINDOW_ID_TO_INDEX: Record<string, number> = {
-  summary: 0,
-  skills: 1,
-  experience: 2,
-  education: 3,
-  certifications: 4,
-  export: 5,
-}
-
 const initialWindowStates = {
   summary: { minimized: false, maximized: false },
   skills: { minimized: false, maximized: false },
@@ -298,24 +287,75 @@ export default function Resume() {
   const [resumeData, setResumeData] = useState<ResumeData | null>(null)
   const [loading, setLoading] = useState(true)
   const [windowStates, setWindowStates] = useState<WindowStates>(initialWindowStates)
+  const [windowAnimations, setWindowAnimations] = useState<Record<string, 'open' | 'pop' | 'none'>>({})
   const { registerMinimizedWindow, minimizedWindows } = useDock()
+
+  const handleMinimize = (id: keyof WindowStates) => {
+    const config = WINDOW_CONFIGS[Object.keys(initialWindowStates).indexOf(id)]
+    registerMinimizedWindow({
+      id: `resume-${id}`,
+      page: 'resume',
+      icon: config.icon,
+      dockColor: config.dockColor,
+      title: config.title
+    })
+    setWindowStates(prev => ({
+      ...prev,
+      [id]: { minimized: true, maximized: false }
+    }))
+  }
+
+  const handleClose = (id: keyof WindowStates) => {
+    const config = WINDOW_CONFIGS[Object.keys(initialWindowStates).indexOf(id)]
+    registerMinimizedWindow({
+      id: `resume-${id}`,
+      page: 'resume',
+      icon: config.icon,
+      dockColor: 'dock-btn-terminal-yellow',
+      title: config.title
+    })
+    setWindowStates(prev => ({
+      ...prev,
+      [id]: { minimized: true, maximized: false }
+    }))
+  }
+
+  const handleMaximize = (id: keyof WindowStates) => {
+    setWindowStates(prev => {
+      const newValue = !prev[id].maximized
+      console.log('Setting', id, 'maximized to', newValue)
+      return {
+        ...prev,
+        [id]: { ...prev[id], maximized: newValue }
+      }
+    })
+  }
 
   useEffect(() => {
     const myWindows = minimizedWindows.filter(w => w.page === 'resume')
-    if (myWindows.length === 0) {
-      setWindowStates(prev => {
-        const keys = Object.keys(prev) as (keyof WindowStates)[]
-        let changed = false
-        const updated = { ...prev }
-        keys.forEach(key => {
-          if (updated[key].minimized) {
-            updated[key] = { ...updated[key], minimized: false }
-            changed = true
-          }
-        })
-        return changed ? updated : prev
+    const resumeWindowIds = ['resume-summary', 'resume-skills', 'resume-experience', 'resume-education', 'resume-certifications', 'resume-export']
+    
+    setWindowStates(prev => {
+      let changed = false
+      const updated = { ...prev }
+      const anims = { ...windowAnimations }
+      
+      resumeWindowIds.forEach(fullId => {
+        const shortId = fullId.replace('resume-', '') as keyof WindowStates
+        const isInDock = myWindows.some(w => w.id === fullId)
+        
+        if (!isInDock && updated[shortId].minimized) {
+          updated[shortId] = { ...updated[shortId], minimized: false }
+          anims[shortId] = 'pop'
+          changed = true
+        }
       })
-    }
+      
+      if (changed) {
+        setTimeout(() => setWindowAnimations({}), 300)
+      }
+      return changed ? updated : prev
+    })
   }, [minimizedWindows])
 
   useEffect(() => {
@@ -331,48 +371,9 @@ export default function Resume() {
       })
   }, [])
 
-  const handleMinimize = (id: keyof typeof windowStates) => {
-    const idx = WINDOW_ID_TO_INDEX[id]
-    const config = WINDOW_CONFIGS[idx]
-    registerMinimizedWindow({
-      id: `resume-${id}`,
-      page: 'resume',
-      icon: config.icon,
-      dockColor: config.dockColor,
-      title: config.title
-    })
-    setWindowStates(prev => ({
-      ...prev,
-      [id]: { ...prev[id], minimized: true, maximized: false }
-    }))
-  }
-
-  const handleClose = (id: keyof typeof windowStates) => {
-    const idx = WINDOW_ID_TO_INDEX[id]
-    const config = WINDOW_CONFIGS[idx]
-    registerMinimizedWindow({
-      id: `resume-${id}`,
-      page: 'resume',
-      icon: config.icon,
-      dockColor: 'dock-btn-terminal-yellow',
-      title: config.title
-    })
-    setWindowStates(prev => ({
-      ...prev,
-      [id]: { minimized: true, maximized: false }
-    }))
-  }
-
-  const handleMaximize = (id: keyof typeof windowStates) => {
-    setWindowStates(prev => ({
-      ...prev,
-      [id]: { ...prev[id], maximized: !prev[id].maximized }
-    }))
-  }
-
   if (loading) {
     return (
-      <main className="min-h-screen py-12 px-4 sm:px-8 pl-20">
+      <main className="min-h-screen py-12 px-4 sm:px-8 pb-24">
         <p className="text-text-secondary">Loading...</p>
       </main>
     )
@@ -380,7 +381,7 @@ export default function Resume() {
 
   if (!resumeData) {
     return (
-      <main className="min-h-screen py-12 px-4 sm:px-8 pl-20">
+      <main className="min-h-screen py-12 px-4 sm:px-8 pb-24">
         <p className="text-error">Failed to load resume data.</p>
       </main>
     )
@@ -389,7 +390,7 @@ export default function Resume() {
   const { basics, work, education, skills, certificates } = resumeData
 
   return (
-    <main className="min-h-screen py-12 px-4 sm:px-8 pl-20">
+    <main className="min-h-screen py-12 px-4 sm:px-8 pb-24">
       <div className="max-w-3xl mx-auto">
         <header className="mb-8 fade-in">
           <h1 className="text-3xl font-bold mb-2">{basics.name}</h1>
@@ -412,6 +413,8 @@ export default function Resume() {
           onMinimize={() => handleMinimize('summary')}
           onClose={() => handleClose('summary')}
           onMaximize={() => handleMaximize('summary')}
+          animation={windowAnimations['summary']}
+          data-maximized={windowStates['summary'].maximized}
         >
           <TerminalTyping text={basics.summary} />
         </TerminalWindow>
@@ -421,6 +424,7 @@ export default function Resume() {
           state={windowStates['skills']}
           onMinimize={() => handleMinimize('skills')}
           onMaximize={() => handleMaximize('skills')}
+          animation={windowAnimations['skills']}
         >
           {skills.map((skill) => (
             <SkillsTable key={skill.name} title={skill.name} items={skill.keywords} />
@@ -433,6 +437,7 @@ export default function Resume() {
           onMinimize={() => handleMinimize('experience')}
           onClose={() => handleClose('experience')}
           onMaximize={() => handleMaximize('experience')}
+          animation={windowAnimations['experience']}
         >
           {work.map((exp, i) => (
             <ExpItem
@@ -454,6 +459,7 @@ export default function Resume() {
           onMinimize={() => handleMinimize('education')}
           onClose={() => handleClose('education')}
           onMaximize={() => handleMaximize('education')}
+          animation={windowAnimations['education']}
         >
           {education.map((edu, i) => (
             <EduItem
@@ -474,6 +480,7 @@ export default function Resume() {
             onMinimize={() => handleMinimize('certifications')}
             onClose={() => handleClose('certifications')}
             onMaximize={() => handleMaximize('certifications')}
+            animation={windowAnimations['certifications']}
           >
             <CertsList items={certificates.map(c => ({ name: c.name, date: formatDate(c.date), expires: formatDate(c.expires) }))} />
           </TerminalWindow>
@@ -484,6 +491,7 @@ export default function Resume() {
           state={windowStates['export']}
           onMinimize={() => handleMinimize('export')}
           onMaximize={() => handleMaximize('export')}
+          animation={windowAnimations['export']}
         >
           <ExportButtons />
         </GUIWindow>

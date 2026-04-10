@@ -90,6 +90,20 @@
 
   .terminal-window {
     @apply bg-bg-secondary rounded-lg border border-bg-surface overflow-hidden;
+    transition: all 0.2s ease-out;
+  }
+
+  .terminal-window.closing {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  .terminal-window.opening {
+    animation: windowOpen 0.2s ease-out;
+  }
+
+  .terminal-window.maximizing {
+    animation: windowPop 0.2s ease-out;
   }
 
   .terminal-titlebar {
@@ -113,11 +127,70 @@
   }
 
   .terminal-title {
-    @apply text-text-secondary text-sm flex-1 text-center pr-9;
+    @apply text-text-secondary text-sm flex-1 text-center px-9;
   }
 
   .terminal-content {
     @apply p-4;
+  }
+
+  .window-opening {
+    animation: windowOpen 0.2s ease-out forwards;
+  }
+
+  .window-closing {
+    animation: windowClose 0.15s ease-in forwards;
+  }
+
+  .window-maximizing {
+    animation: windowMaximize 0.2s ease-out forwards;
+  }
+
+  .window-unmaximizing {
+    animation: windowUnmaximize 0.2s ease-out forwards;
+  }
+
+  @keyframes windowOpen {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes windowPop {
+    0% {
+      transform: scale(0.95);
+    }
+    50% {
+      transform: scale(1.02);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes windowClose {
+    from {
+      opacity: 1;
+      transform: scale(1);
+    }
+    to {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+  }
+
+  @keyframes windowMaximize {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1);
+    }
   }
 
   .window-maximized {
@@ -140,16 +213,18 @@
 
   .dock {
     position: fixed;
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: 64px;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
     background: var(--color-bg-surface);
-    border-right: 1px solid var(--color-bg-primary);
+    border: 1px solid var(--color-bg-primary);
+    border-radius: 24px;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
-    padding: 16px 0;
+    padding: 8px 16px;
     gap: 12px;
     z-index: 100;
   }
@@ -188,6 +263,22 @@
 
   .dock-btn-gui {
     @apply bg-base03 text-base04 hover:bg-base04 hover:text-base00;
+  }
+
+  .dock-btn-contact {
+    @apply bg-base0F/80 text-base00 hover:bg-base0F;
+  }
+
+  .dock-btn-blog {
+    @apply bg-base0A/80 text-base00 hover:bg-base0A;
+  }
+
+  .dock-btn-nav {
+    @apply bg-bg-surface/50 text-text-secondary hover:text-text-primary hover:bg-bg-surface border border-transparent hover:border-accent/30;
+  }
+
+  .dock-btn-nav-active {
+    @apply bg-bg-surface text-accent border-accent/50;
   }
 
   .terminal-prompt {

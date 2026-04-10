@@ -3,7 +3,8 @@ import { createContext, useContext, useState, type ReactNode } from 'react'
 import Home from './pages/Home'
 import Resume from './pages/Resume'
 import Contact from './pages/Contact'
-import { FaHome, FaFile } from 'react-icons/fa'
+import Blog from './pages/Blog'
+import { FaHome, FaFile, FaEnvelope, FaPen } from 'react-icons/fa'
 
 interface MinimizedWindow {
   id: string
@@ -32,11 +33,14 @@ interface DockItem {
   path: string
   icon: React.ComponentType<{ className?: string }>
   dockColor: string
+  label: string
 }
 
 const PAGE_ITEMS: DockItem[] = [
-  { id: 'home', path: '/', icon: FaHome, dockColor: 'dock-btn-home' },
-  { id: 'resume', path: '/resume', icon: FaFile, dockColor: 'dock-btn-terminal' },
+  { id: 'home', path: '/', icon: FaHome, dockColor: '', label: 'Home' },
+  { id: 'resume', path: '/resume', icon: FaFile, dockColor: '', label: 'Resume' },
+  { id: 'contact', path: '/contact', icon: FaEnvelope, dockColor: '', label: 'Contact' },
+  { id: 'blog', path: '/blog', icon: FaPen, dockColor: '', label: 'Blog' },
 ]
 
 function Dock() {
@@ -55,8 +59,8 @@ function Dock() {
           <Link
             key={item.id}
             to={item.path}
-            className={`dock-btn ${item.dockColor} ${isActive ? 'ring-2 ring-accent' : ''}`}
-            title={item.id === 'home' ? 'Home' : 'Resume'}
+            className={`dock-btn dock-btn-nav ${isActive ? 'dock-btn-nav-active' : ''}`}
+            title={item.label}
           >
             <Icon className="text-lg" />
           </Link>
@@ -111,6 +115,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/resume" element={<Resume />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/blog" element={<Blog />} />
       </Routes>
     </DockProvider>
   )
