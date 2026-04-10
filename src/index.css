@@ -196,9 +196,9 @@
   .window-maximized {
     position: fixed !important;
     top: 0 !important;
-    left: 64px !important;
+    left: 0 !important;
     right: 0 !important;
-    width: calc(100vw - 64px) !important;
+    width: 100vw !important;
     max-width: none !important;
     height: 100vh !important;
     border-radius: 0 !important;

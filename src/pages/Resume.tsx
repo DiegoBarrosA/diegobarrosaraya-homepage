@@ -93,7 +93,7 @@ function TerminalWindow({
   const animClass = animation === 'open' ? 'opening' : animation === 'pop' ? 'maximizing' : ''
 
   return (
-    <div className={`terminal-window mb-6 fade-in ${animClass} ${state.maximized ? 'max-w-4xl mx-auto test-maximized' : ''}`}>
+    <div className={`terminal-window mb-6 fade-in ${animClass} ${state.maximized ? 'window-maximized' : ''}`}>
       <div className="terminal-titlebar">
         <button type="button" onClick={onMinimize} className="terminal-btn terminal-btn-red hover:opacity-80 transition-opacity" title="Minimize" />
         <button type="button" onClick={onClose} className="terminal-btn terminal-btn-yellow hover:opacity-80 transition-opacity" title="Close" />
@@ -127,7 +127,7 @@ function GUIWindow({
   const animClass = animation === 'open' ? 'opening' : animation === 'pop' ? 'maximizing' : ''
 
   return (
-    <div className={`terminal-window mb-6 fade-in ${animClass} ${state.maximized ? 'max-w-4xl mx-auto test-maximized' : ''}`}>
+    <div className={`terminal-window mb-6 fade-in ${animClass} ${state.maximized ? 'window-maximized' : ''}`}>
       <div className="terminal-titlebar">
         <button type="button" onClick={onMinimize} className="terminal-btn terminal-btn-red hover:opacity-80 transition-opacity" title="Minimize" />
         <button type="button" className="terminal-btn terminal-btn-yellow hover:opacity-80 transition-opacity" title="Close" />

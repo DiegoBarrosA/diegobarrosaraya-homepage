@@ -6,7 +6,7 @@ type FormState = 'idle' | 'submitting' | 'success' | 'error'
 
 function FormWindow({ title, children, onMinimize, onMaximize, state }: { title: string; children: React.ReactNode; onMinimize?: () => void; onMaximize?: () => void; state?: { maximized: boolean } }) {
   return (
-    <div className={`terminal-window mb-6 fade-in ${state?.maximized ? 'max-w-4xl mx-auto' : ''}`}>
+    <div className={`terminal-window mb-6 fade-in ${state?.maximized ? 'window-maximized' : ''}`}>
       <div className="terminal-titlebar">
         <button type="button" onClick={onMinimize} className="terminal-btn terminal-btn-red hover:opacity-80 transition-opacity" title="Minimize" />
         <button type="button" className="terminal-btn terminal-btn-yellow hover:opacity-80 transition-opacity" title="Close" />

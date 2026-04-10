@@ -2,16 +2,17 @@ import { useState } from 'react'
 
 function BlogPlaceholder() {
   const [loading, setLoading] = useState(true)
+  const [maximized, setMaximized] = useState(false)
 
   return (
-    <div className="terminal-window mb-6 fade-in">
+    <div className={`terminal-window mb-6 fade-in ${maximized ? 'window-maximized' : ''}`}>
       <div className="terminal-titlebar">
-        <span className="terminal-btn terminal-btn-red" />
-        <span className="terminal-btn terminal-btn-yellow" />
-        <span className="terminal-btn terminal-btn-green" />
+        <button type="button" className="terminal-btn terminal-btn-red hover:opacity-80 transition-opacity" title="Minimize" />
+        <button type="button" className="terminal-btn terminal-btn-yellow hover:opacity-80 transition-opacity" title="Close" />
+        <button type="button" onClick={() => setMaximized(!maximized)} className="terminal-btn terminal-btn-green hover:opacity-80 transition-opacity" title="Maximize" />
         <span className="terminal-title">~/blog$ curl https://blog.diegobarrosaraya.com/</span>
       </div>
-      <div className="terminal-content h-[70vh]">
+      <div className={`terminal-content ${maximized ? '' : 'h-[70vh]'}`}>
         {loading && (
           <div className="flex items-center justify-center h-full text-text-secondary">
             <span className="terminal-prompt">Loading blog...</span>

@@ -64,7 +64,7 @@ function TerminalWindow({
   const animClass = animation === 'open' ? 'opening' : animation === 'pop' ? 'maximizing' : ''
 
   return (
-    <div className={`terminal-window mb-6 fade-in ${animClass} ${state.maximized ? 'max-w-4xl mx-auto' : ''}`}>
+    <div className={`terminal-window mb-6 fade-in ${animClass} ${state.maximized ? 'window-maximized' : ''}`}>
       <div className="terminal-titlebar">
         <button type="button" onClick={onMinimize} className="terminal-btn terminal-btn-red hover:opacity-80 transition-opacity" title="Minimize" />
         <button type="button" onClick={onClose} className="terminal-btn terminal-btn-yellow hover:opacity-80 transition-opacity" title="Close" />
@@ -124,11 +124,15 @@ export default function Home() {
   }
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-8 pb-24">
-      <div className="max-w-2xl w-full text-center fade-in">
-        <ProfilePhoto />
-        <h1 className="text-4xl font-bold mb-2 text-text-primary tracking-tight">DIEGO BARROS ARAYA</h1>
-        <p className="text-xl text-accent mb-8">Senior IT Engineer & Technical Consultant</p>
+    <main className={`flex flex-col p-0 pb-24 ${bioState.maximized ? 'h-screen items-start' : 'min-h-screen items-center justify-center p-8'}`}>
+      <div className={`w-full text-center fade-in ${bioState.maximized ? 'max-w-none pt-0' : 'max-w-2xl'}`}>
+        {!bioState.maximized && (
+          <>
+            <ProfilePhoto />
+            <h1 className="text-4xl font-bold mb-2 text-text-primary tracking-tight">DIEGO BARROS ARAYA</h1>
+            <p className="text-xl text-accent mb-8">Senior IT Engineer & Technical Consultant</p>
+          </>
+        )}
         <TerminalWindow
           title="~/bio$ cat bio.sh"
           state={bioState}
