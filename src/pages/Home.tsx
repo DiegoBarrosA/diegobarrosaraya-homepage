@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { FaFileAlt, FaBlog, FaEnvelope } from 'react-icons/fa'
+import { FaFileAlt, FaBlog, FaEnvelope, FaUser } from 'react-icons/fa'
+import { useDock } from '../App'
 
 const bioText = `Beyond my professional work, I'm an avid explorer of both legacy Unix systems and cutting-edge Linux distributions, driven by a passion for open-source technology and continuous learning.`
 
@@ -9,6 +10,11 @@ const navItems = [
   { path: 'https://blog.diegobarrosaraya.com', label: 'Blog', icon: FaBlog, external: true },
   { path: '/contact', label: 'Contact', icon: FaEnvelope },
 ]
+
+interface WindowState {
+  minimized: boolean
+  maximized: boolean
+}
 
 function TerminalBio({ text }: { text: string }) {
   const [displayedText, setDisplayedText] = useState('')
@@ -29,12 +35,10 @@ function TerminalBio({ text }: { text: string }) {
   }, [text])
 
   return (
-    <div className="relative">
-      <pre className="text-left whitespace-pre-wrap leading-relaxed text-success">
-        {displayedText}
-        {!isComplete && <span className="terminal-cursor animate-[blink_1s_infinite]" />}
-      </pre>
-    </div>
+    <pre className="whitespace-pre-wrap leading-relaxed text-text-secondary">
+      {displayedText}
+      {!isComplete && <span className="terminal-cursor animate-[blink_1s_infinite]" />}
+    </pre>
   )
 }
 
@@ -46,6 +50,38 @@ function ProfilePhoto() {
       <img src="/me.jpg" alt="Diego Barros Araya" 
            className="relative w-40 h-40 rounded-full object-cover border-2 border-accent/50 glow" 
            loading="eager" />
+    </div>
+  )
+}
+
+function TerminalWindow({
+  title,
+  state,
+  onMinimize,
+  onClose,
+  onMaximize,
+  children
+}: {
+  title: string
+  state: WindowState
+  onMinimize: () => void
+  onClose: () => void
+  onMaximize: () => void
+  children: React.ReactNode
+}) {
+  if (state.minimized) return null
+
+  return (
+    <div className={`terminal-window mb-6 fade-in ${state.maximized ? 'window-maximized' : ''}`}>
+      <div className="terminal-titlebar">
+        <button onClick={onMinimize} className="terminal-btn terminal-btn-red hover:opacity-80 transition-opacity" title="Minimize" />
+        <button onClick={onClose} className="terminal-btn terminal-btn-yellow hover:opacity-80 transition-opacity" title="Close" />
+        <button onClick={onMaximize} className="terminal-btn terminal-btn-green hover:opacity-80 transition-opacity" title="Maximize" />
+        <span className="terminal-title">{title}</span>
+      </div>
+      <div className="terminal-content">
+        {children}
+      </div>
     </div>
   )
 }
@@ -86,21 +122,65 @@ function Navigation({ showNav }: { showNav: boolean }) {
 
 export default function Home() {
   const [showNav, setShowNav] = useState(false)
+  const [bioState, setBioState] = useState<WindowState>({ minimized: false, maximized: false })
+  const { registerMinimizedWindow, minimizedWindows } = useDock()
+  const [, forceUpdate] = useState(0)
 
   useEffect(() => {
     const timer = setTimeout(() => setShowNav(true), 1000)
     return () => clearTimeout(timer)
   }, [])
 
+  useEffect(() => {
+    const isMinimized = minimizedWindows.some(w => w.id === 'home-bio')
+    if (!isMinimized && bioState.minimized) {
+      setBioState(prev => ({ ...prev, minimized: false }))
+      forceUpdate(n => n + 1)
+    }
+  }, [minimizedWindows])
+
+  const handleMinimize = () => {
+    registerMinimizedWindow({
+      id: 'home-bio',
+      page: 'home',
+      icon: FaUser,
+      dockColor: 'dock-btn-terminal',
+      title: 'bio.sh'
+    })
+    setBioState({ minimized: true, maximized: false })
+  }
+
+  const handleClose = () => {
+    registerMinimizedWindow({
+      id: 'home-bio',
+      page: 'home',
+      icon: FaUser,
+      dockColor: 'dock-btn-terminal-yellow',
+      title: 'bio.sh'
+    })
+    setBioState({ minimized: true, maximized: false })
+  }
+
+  const handleMaximize = () => {
+    setBioState(prev => ({ ...prev, maximized: !prev.maximized }))
+  }
+
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center p-8">
-      <div className="max-w-2xl w-full text-center fade-in">
+    <main className="min-h-screen flex flex-col items-center justify-center p-8 pl-20">
+      <div className={`max-w-2xl w-full text-center fade-in ${bioState.maximized ? 'max-w-4xl px-8' : ''}`}>
         <ProfilePhoto />
         <h1 className="text-4xl font-bold mb-2 text-text-primary tracking-tight">DIEGO BARROS ARAYA</h1>
         <p className="text-xl text-accent mb-8">Senior IT Engineer & Technical Consultant</p>
-        <div className="bg-bg-secondary/50 rounded-lg p-6 text-left backdrop-blur-sm">
+        <TerminalWindow
+          title="~/bio$ cat bio.sh"
+          state={bioState}
+          onMinimize={handleMinimize}
+          onClose={handleClose}
+          onMaximize={handleMaximize}
+        >
+          <div className="terminal-prompt">$ cat bio.sh</div>
           <TerminalBio text={bioText} />
-        </div>
+        </TerminalWindow>
         <Navigation showNav={showNav} />
       </div>
     </main>

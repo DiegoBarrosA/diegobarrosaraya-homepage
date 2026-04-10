@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
 import { FaEnvelope, FaLinkedin, FaPaperPlane } from 'react-icons/fa'
 
 type FormState = 'idle' | 'submitting' | 'success' | 'error'
@@ -24,11 +23,9 @@ export default function Contact() {
   }
 
   return (
-    <main className="min-h-screen py-12 px-4 sm:px-8">
+    <main className="min-h-screen py-12 px-4 sm:px-8 pl-20">
       <div className="max-w-lg mx-auto">
-        <Link to="/" className="inline-block mb-8 text-accent hover:text-accent-secondary transition-colors flex items-center gap-2">
-          <span>←</span> Back to Home
-        </Link>
+        
         <header className="mb-8 fade-in">
           <h1 className="text-3xl font-bold mb-2">Get in Touch</h1>
           <p className="text-text-secondary">Have a question or want to work together?</p>
